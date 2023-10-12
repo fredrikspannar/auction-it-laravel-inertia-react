@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    html, body {
+        width: 100%;
+    }
+
+    .containerContent {
+        @apply h-screen w-screen p-4 bg-slate-100;
+    }
+}
