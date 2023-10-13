@@ -16,24 +16,6 @@ class ItemSeeder extends Seeder
      */
     public function run(): void
     {
-        function array_flatten(array $array)
-        {
-            $flat = array(); // initialize return array
-            $stack = array_values($array); // initialize stack
-            while($stack) // process stack until done
-            {
-                $value = array_shift($stack);
-                if (is_array($value)) // a value to further process
-                {
-                    array_unshift($stack, ...$value);
-                }
-                else // a value to take
-                {
-                    $flat[] = $value;
-                }
-            }
-            return $flat;
-        }
 
         // count total number of users
         // and then how many of those should be sellers
@@ -42,14 +24,6 @@ class ItemSeeder extends Seeder
 
         // get sellers starting at random index from 1 to remaning number of total - sellers
         $sellers = User::select('id')->get()->slice(rand(1,($totalUsers-$sellersNum)), $sellersNum);
-
-        // create a flat array with id to sellers
-        $sellerIds = array_flatten( $sellers->map(function ($seller) {
-            return (int)$seller->id;
-        })->toArray() );
-
-        // the rest of the users is considered buyers
-        $buyers = User::select('id')->whereNotIn('id',$sellerIds)->get();
 
         // loop through each seller
         foreach($sellers as $seller) {

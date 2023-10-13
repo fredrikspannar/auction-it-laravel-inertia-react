@@ -128,7 +128,8 @@ class UserSeeder extends Seeder
                 'username' => (string)$u->login->username,
                 'city' => (string)$u->location->city,
                 'state' => (string)$u->location->state,
-                'country' => (string)$u->location->country
+                'country' => (string)$u->location->country,
+                'location' => json_encode($u->location->coordinates)
             ])->id;
 
             $user = $country = User::where('id', $user_id)->first();
