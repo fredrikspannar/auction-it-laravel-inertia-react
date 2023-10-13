@@ -98,7 +98,7 @@ class UserSeeder extends Seeder
         } else {
 
             // some error occured
-            throw( "FAILED to get image from randomuser.me. StatusCode: $response->getStatusCode()");
+            throw( "FAILED to get image from randomuser.me, StatusCode: $response->getStatusCode()");
         }
 
     }

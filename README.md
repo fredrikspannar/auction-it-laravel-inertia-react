@@ -12,6 +12,20 @@ docker run --name auctionit-postgres -e POSTGRES_PASSWORD=laravel -d postgres
 
 ( just make sure Docker/Docker Desktop is installed and running on the computer )
 
+#### database artisan commands
+
+To migrate a database:
+
+```
+php artisan migrate
+```
+
+To refresh a migration with seeding of dummy data:
+
+```
+php artisan migrate:refresh --seed
+```
+
 ### backend and frontend
 To start up backend:
 
