@@ -25,4 +25,12 @@ class Item extends Model
     {
         return $this->hasOne(User::class, 'id', 'buyer_id');
     }
+
+    /**
+     * Get the category associated with the item.
+     */
+    public function category(): HasOne
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }    
 }
