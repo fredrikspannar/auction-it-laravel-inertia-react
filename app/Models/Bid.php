@@ -17,7 +17,7 @@ class Bid extends Model
 
         // only set created_at when a new row is created
         static::creating(function ($model) {
-            $model->created_at = $model->freshTimestamp();
+            if ( !$model->created_at ) $model->created_at = $model->freshTimestamp();
         });
     }    
 }

@@ -33,6 +33,7 @@ class BidSeeder extends Seeder
 
             // set starting bid - either half the price or at the asking price
             $lastBid = rand(1,2) == 2 ? $item->price /2 : $item->price;
+            $lastBidDate = $item->created_at;
 
             // create a bid for each buyer
             foreach($buyers as $buyer) {
@@ -42,11 +43,21 @@ class BidSeeder extends Seeder
                     $newBid += rand(1, round($item->price/4, 2));
                 }
 
+                // create a new bid date
+                $newBidDate = $lastBidDate;
+                $startingHour = 0;
+                while ($newBidDate == $lastBidDate || $newBidDate < $item->created_at) {
+                    $startingHour++;
+                    $nextHour = rand($startingHour, 48);
+                    $newBidDate = date('Y-m-d H:i:s', strtotime("+{$nextHour} hours", strtotime($lastBidDate)));
+                }
+
                 // save bid
-                Bid::create([ 'item_id' => $item->id, 'price' => $lastBid, 'bidder_id' => $buyer->id ]);
+                Bid::create([ 'item_id' => $item->id, 'price' => $lastBid, 'bidder_id' => $buyer->id, 'created_at' => $newBidDate ]);
 
                 // save for next round
                 $lastBid = $newBid;
+                $lastBidDate = $newBidDate;
             }
 
         }
