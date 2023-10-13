@@ -13,9 +13,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            // User must be run FIRST
             UserSeeder::class,
+
+            // Category must be run before Item
             CategorySeeder::class,
+
             ItemSeeder::class,
+            ItemImagesSeeder::class,
+
+            // Bid must be run AFTER User->Category->Item
             BidSeeder::class,
         ]);
 
