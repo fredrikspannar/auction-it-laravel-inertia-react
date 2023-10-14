@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer utilities {
+    .logo img { height: 72px; width: auto; }
+    .header-top { 
+        background: url('/images/header_bg_top.jpg');
+        background-size: cover;
+        background-position: center center;
+        height: 160px;
+        @apply text-white;
+    }
+
+    .header-top .navbar {
+        @apply border-yellow-500 border-t-[1px];
+    }
+
+    .header-top .navbar a {
+        @apply text-xl shadow-lg hover:opacity-60;
+    }
+
+    .header-top .navbar ul.user.not-logged-in a {
+        @apply px-4 py-1 bg-yellow-500 text-black rounded-sm hover:bg-yellow-300;
+    }
+}
