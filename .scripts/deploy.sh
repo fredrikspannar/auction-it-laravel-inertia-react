@@ -21,6 +21,10 @@ npm install
 npm run build
 
 # Run database migrations
-#php artisan migrate --force
+php artisan migrate --force
 
+# Link storage folder
+php artisan storage:link
+
+# ... aaaaand
 echo "Deployment finished!"
