@@ -55,7 +55,7 @@ class CategorySeeder extends Seeder
             throw( "FAILED to get category image from picsum.photos, StatusCode: $response->getStatusCode()");
         }
 
-        return "category/category_{$category_id}.png";
+        return "category/category_{$category_id}.{$ext}";
     }
 
 
