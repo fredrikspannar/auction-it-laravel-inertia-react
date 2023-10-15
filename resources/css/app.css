@@ -26,7 +26,7 @@
     }
 
     .categoryCard {
-        @apply m-2 border-2 rounded-sm border-slate-400 bg-slate-100;
+        @apply m-2 border-2 rounded-sm border-slate-400 bg-slate-100 flex flex-col !justify-center;
     }
 
     .categoryTitle {

@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use \App\Models\Category;
+
 class HomeController extends Controller
 {
     
@@ -13,7 +15,8 @@ class HomeController extends Controller
 
     public function index() {
 
-
+        // get main categories ( has no parent )
+        $categories = Category::whereNull('parent_id')->get();
 
 
 
@@ -22,8 +25,8 @@ class HomeController extends Controller
         return Inertia::render('Home', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            //'laravelVersion' => Application::VERSION,
-            //'phpVersion' => PHP_VERSION,
+            
+            'categories' => $categories
         ]);
     }
 
