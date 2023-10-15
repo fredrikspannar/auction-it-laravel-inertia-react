@@ -22,7 +22,7 @@ use App\Http\Controllers\StatisticsController;
 */
 
 Route::get('/',  [HomeController::class, 'index']);
-Route::get('/categories',  [CategoryController::class, 'index'])->name('categories');
+Route::get('/categories/{id?}',  [CategoryController::class, 'index'])->name('categories');
 Route::get('/sellers',  [SellersController::class, 'index'])->name('sellers');
 Route::get('/statistics',  [StatisticsController::class, 'index'])->name('statistics');
 

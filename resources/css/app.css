@@ -13,15 +13,35 @@
         @apply text-white;
     }
 
-    .header-top .navbar {
-        @apply border-yellow-500 border-t-[1px];
-    }
-
     .header-top .navbar a {
         @apply text-xl shadow-lg hover:opacity-60;
     }
 
+    .header-top .navbar a.active {
+        @apply  border-yellow-500 border-b-[2px];
+    }
+
     .header-top .navbar ul.user.not-logged-in a {
         @apply px-4 py-1 bg-yellow-500 text-black rounded-sm hover:bg-yellow-300;
+    }
+
+    .categoryCard {
+        @apply m-2 border-2 rounded-sm border-slate-400 bg-slate-100;
+    }
+
+    .categoryTitle {
+        @apply text-xl p-2 py-4 flex justify-center;
+    }
+
+    .categoryParents {
+        @apply lg:text-sm mb-2 lg:mb-4 ml-2;
+    }
+
+    .categoryParents a {
+        @apply hover:opacity-60;
+    }
+
+    .textCardSmall .categoryTitle {
+        font-size: 14px !important;
     }
 }

@@ -1,9 +1,11 @@
 
-import { User } from '@/types';
-import { Link, Head } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { PageProps } from '@/types';
+import { usePage } from '@inertiajs/react'
 
 export default function Layout({ auth, children }: PageProps) {
+
+    const { url } = usePage();
 
     console.log('Layout auth = ',auth);
 
@@ -20,10 +22,10 @@ export default function Layout({ auth, children }: PageProps) {
                     </div>
                     <div className="navbar flex justify-between h-1/3 ml-2 lg:ml-6 mr-2 lg:mr-6 items-center">
                         <ul className="flex flex-row space-x-6">
-                            <li><Link href='/'>Home</Link></li>
-                            <li><Link href={route('categories')}>Categories</Link></li>
-                            <li><Link href={route('sellers')}>Browse Sellers</Link></li>
-                            <li><Link href={route('statistics')}>Statistics</Link></li>
+                            <li><Link href='/' className={url === '/' ? 'active' : ''}>Home</Link></li>
+                            <li><Link href={route('categories')} className={url.includes('/categories') ? 'active' : ''}>Categories</Link></li>
+                            <li><Link href={route('sellers')} className={url.includes('/sellers') ? 'active' : ''}>Browse Sellers</Link></li>
+                            <li><Link href={route('statistics')} className={url.includes('/statistics') ? 'active' : ''}>Statistics</Link></li>
                         </ul>
                         {!auth.user && (
                             <ul className="user not-logged-in flex flex-row space-x-6">
