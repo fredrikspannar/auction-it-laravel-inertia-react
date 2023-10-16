@@ -56,7 +56,7 @@ class ItemImagesSeeder extends Seeder
             throw( "FAILED to get item image from loremflickr, StatusCode: $response->getStatusCode()");
         }
 
-        return "item/item_{$item_id}.{$ext}";
+        return "item/{$item_id}/item_{$item_id}.{$ext}";
     }
 
 

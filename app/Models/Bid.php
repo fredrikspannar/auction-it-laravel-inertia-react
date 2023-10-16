@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\User;
+
 class Bid extends Model
 {
     use HasFactory;
@@ -20,4 +22,8 @@ class Bid extends Model
             if ( !$model->created_at ) $model->created_at = $model->freshTimestamp();
         });
     }    
+
+    public function bidder() {
+        return  $this->hasOne(User::class, 'id', 'bidder_id');
+    }
 }
