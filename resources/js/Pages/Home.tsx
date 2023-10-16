@@ -10,12 +10,9 @@ export default function Home ({ auth, top_category_names, categories }:PageProps
 
     // run effect only on load
     useEffect(() => {
-        let flipInterval;
-
-        flipInterval = setInterval(() => {
+        let flipInterval = setInterval(() => {
             // shuffle array
-            const newData = topCategoryData.map(function(n){ return [Math.random(), n] }).sort().map(function(n){ return n[1] });
-
+            const newData:string[] = topCategoryData.map(function(n){ return [Math.random(), n] }).sort().map(function(n){ return n[1] }) as string[];
             setTopCategoryData( newData );
 
         },3000);
