@@ -52,4 +52,9 @@ class Item extends Model
     public function images() {
         return $this->hasMany(ItemImages::class, 'item_id', 'id');
     }
+
+    // get bid
+    public function bids() {
+        return $this->hasMany(Bid::class, 'item_id', 'id');
+    }    
 }

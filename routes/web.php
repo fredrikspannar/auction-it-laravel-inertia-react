@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SellersController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::get('/',  [HomeController::class, 'index']);
 Route::get('/categories/{id?}',  [CategoryController::class, 'index'])->name('categories');
 Route::get('/sellers',  [SellersController::class, 'index'])->name('sellers');
 Route::get('/statistics',  [StatisticsController::class, 'index'])->name('statistics');
+Route::get('/item/{id?}',  [ItemController::class, 'index'])->name('item');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
