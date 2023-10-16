@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use \App\Models\Category;
+use \App\Models\Item;
 
 class CategoryController extends Controller
 {
@@ -15,6 +16,7 @@ class CategoryController extends Controller
         // get categories
         $categories = [];
         $parents = [];
+        $items = [];
 
         if ( empty($id) ) {
             // get main categories ( has no parent )
@@ -49,6 +51,9 @@ class CategoryController extends Controller
             // mash result to use as breadcrumb path - we only really need name but gather id and parent_id also if we should need that
             $parents = array_map(fn ($p) => [ 'id' => $p->id, 'name' => $p->name, 'parent_id' => $p->parent_id,] ,$parentResult);
 
+            // get items in category that is on sale and has no buyer
+            $items = Item::with('images')->with('seller')->where('category_id', $id)->whereNull('buyer_id')->get();
+
         }
 
 
@@ -57,7 +62,8 @@ class CategoryController extends Controller
             'canRegister' => Route::has('register'),
 
             'parents' => array_reverse($parents), // reverse array with parents
-            'categories' => !is_array($categories) ? $categories->toArray() : $categories
+            'categories' => !is_array($categories) ? $categories->toArray() : $categories,
+            'items' => $items
         ]);
     }
 }

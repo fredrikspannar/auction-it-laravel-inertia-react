@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
 import Layout from "@/Layouts/Layout"
 import { PageProps } from '@/types';
-import { Link } from '@inertiajs/react'
-import {Category} from "@/types";
+import { Category, Item } from "@/types";
 import CategoryParentsCrumbs from '@/Components/Category/CategoryParentsCrumbs';
 import CategoryCardLoop from '@/Components/Category/CategoryCardLoop';
+import ItemLoop from '@/Components/Category/ItemLoop';
 
-export default function Categories ({ auth, categories, parents }:PageProps<{categories: Category[], parents: Category[]}>) {
+export default function Categories ({ auth, categories, parents, items }:PageProps<{categories: Category[], parents: Category[], items:Item[]}>) {
 
     // no categories at all?
     if ( !categories || categories.length == 0 ) {
@@ -19,13 +18,15 @@ export default function Categories ({ auth, categories, parents }:PageProps<{cat
 
     // set flag that will be used as sizeing of card
     const isMainCategories = categories[0].parent_id === null ? true : false;
-
+    const categoryName = categories[categories.length-1].name;
 
     return (
         <Layout auth={auth}>
+
             <CategoryParentsCrumbs parents={parents} />
             <CategoryCardLoop categories={categories} isMainCategories={isMainCategories} />
 
+            <ItemLoop items={items} categoryName={categoryName} />
 
         </Layout>
     )

@@ -52,4 +52,12 @@
         @apply w-full lg:w-3/4 lg:mx-auto p-4;
         height: calc(100vh - 160px) !important;
     }
+
+    .itemCard {
+        @apply h-[32rem] w-80 bg-slate-100;
+    }
+
+    .itemCardContent {
+        @apply p-2;
+    }
 }
