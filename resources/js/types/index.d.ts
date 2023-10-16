@@ -52,4 +52,5 @@ export interface Item {
     lastBid?:Bid;
     seller?: User;
     images?:ItemImage[];
+    category?:Category;
 }
