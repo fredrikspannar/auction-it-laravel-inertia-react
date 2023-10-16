@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from "@/Layouts/Layout"
 import { PageProps } from '@/types';
 
-export default function HomSellerse ({ auth }:PageProps) {
+export default function Sellers ({ auth }:PageProps) {
 
 
     return (
