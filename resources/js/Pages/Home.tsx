@@ -32,7 +32,7 @@ export default function Home ({ auth, top_category_names, categories }:PageProps
             
             <div className="text-2xl font-bold p-4 lg:p-8 lg:mt-24 flex flex-row lg:w-3/4 lg:mx-auto border-2 border-slate-600 rounded-2xl shadow-xl bg-slate-100">
                 <div className="w-3/4 flex flex-col justify-around">
-                    <p className="text-4xl">The easiest site to sell that stuff in your garage<br/> that you don't need! <span className="text-lg text-gray-700">( except cats )</span></p>
+                    <p className="text-4xl">The easiest site to sell that stuff in your garage that you don't need! <span className="text-lg text-gray-700">( except cats )</span></p>
                     
                     <div>
                         <p>Today our top 5 popular categories are...</p>
