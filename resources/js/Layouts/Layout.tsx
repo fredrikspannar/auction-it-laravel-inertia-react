@@ -27,12 +27,12 @@ export default function Layout({ auth, children }: PageProps) {
                             <li><Link href={route('sellers')} className={url.includes('/sellers') ? 'active' : ''}>Browse Sellers</Link></li>
                             <li><Link href={route('statistics')} className={url.includes('/statistics') ? 'active' : ''}>Statistics</Link></li>
                         </ul>
-                        {!auth.user && (
+                        {/* !auth.user && (
                             <ul className="user not-logged-in flex flex-row space-x-6">
                                 <li><Link href={route('login')}>Login</Link></li>
                                 <li><Link href={route('register')}>Register</Link></li>
                             </ul>                    
-                        )}
+                        )*/}
                     </div>
                 </div>
             </div>
