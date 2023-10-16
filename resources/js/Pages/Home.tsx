@@ -10,7 +10,7 @@ export default function Home ({ auth, top_category_names, categories }:PageProps
 
     // run effect only on load
     useEffect(() => {
-        let flipInterval:number=0;
+        let flipInterval;
 
         flipInterval = setInterval(() => {
             // shuffle array
