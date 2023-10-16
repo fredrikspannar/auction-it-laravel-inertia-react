@@ -29,7 +29,7 @@
     }
 
     .categoryCard {
-        @apply m-2 border-2 rounded-sm border-slate-400 bg-slate-100 flex flex-col !justify-center;
+        @apply m-2 !w-[26rem] hover:opacity-60;
     }
 
     .categoryTitle {

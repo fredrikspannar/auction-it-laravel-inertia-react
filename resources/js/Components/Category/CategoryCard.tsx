@@ -18,14 +18,14 @@ export default function CategoryCard( { category, isMainCategories, isSiteHome =
         target.src = "/images/empty_category.png";
     }
 
-    const cardClasses = `categoryCard ${isMainCategories ? "w-full lg:w-3/4" : "lg:h-36 textCardSmall"} ${isSiteHome ? "flex flex-col items-center pb-2" : ""}`;
+    const cardClasses = `categoryCard ${isMainCategories ? "" : "textCardSmall"} ${isSiteHome ? "flex flex-col items-center pb-2" : ""}`;
 
     // does the category have any children?
     if ( category.children && category.children.length > 0 ) {
 
         // return card with a link
         return (
-            <Link href={route('categories', [category.id])}>
+            <Link href={route('categories', [category.id])} title={`View Category "${category.name}"`}>
                 <div className={cardClasses} key={`category-${category.id}`}>
                     <img onError={brokenImageFallback} src={`storage/${category.image}`} alt={`Category ${category.name}`} />
                     <p className="categoryTitle">{category.name}</p>
