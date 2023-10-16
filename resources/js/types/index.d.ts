@@ -10,6 +10,7 @@ export interface User {
     id: number;
     name: string;
     email: string;
+    username: string;
     email_verified_at: string;
 }
 
@@ -25,7 +26,7 @@ export interface Category {
 export interface Bid {
     id: number;
     item_id: number;
-    pridce: number;
+    price: number;
     bidder_id: number;
     created_at: Date;
     bidder?: User;

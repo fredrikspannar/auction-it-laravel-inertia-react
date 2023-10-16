@@ -1,4 +1,5 @@
 import { Item } from "@/types";
+import { ItemCardLastBid } from '@/Components/Category/ItemCardLastBid';
 
 // create types for component, this is only used here
 export type ItemCardProps = {
@@ -15,13 +16,17 @@ export function ItemCard( {item}:ItemCardProps ) {
     }
 
     return (
-        <div className="itemCard">
-            <p><img src={`/storage/${item.images[0].image}`} alt={item.title} /></p>
+        <div className="itemCard mt-4">
+            <p><img onError={brokenImageFallback} src={`/storage/${item.images && item.images[0].image}`} alt={item.title} /></p>
             <div className="itemCardContent">
                 <p className="text-lg">{item.title}</p>
-                <p className="mt-2">Price: {item.price}</p>
-                <p className="">Seller: {item.selsler?.username}</p>
+                <div className="mb-8 py-4 px-1 flex flex-row justify-between">
+                    <p><span className="text-slate-800">Price:</span> {item.price}</p>
+                    <p><span className="text-slate-800">Seller:</span> {item.seller?.username}</p>
                 </div>
+
+                {item.lastBid && <ItemCardLastBid lastBid={item.lastBid} /> }
+            </div>
         </div>
     );
 }

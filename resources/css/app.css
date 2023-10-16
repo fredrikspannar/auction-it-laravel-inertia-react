@@ -48,6 +48,10 @@
         font-size: 14px !important;
     }
 
+    .textCardSmall {
+        @apply !w-36;
+    }
+
     .mainContent {
         @apply w-full lg:w-3/4 lg:mx-auto p-4;
         height: calc(100vh - 160px) !important;
