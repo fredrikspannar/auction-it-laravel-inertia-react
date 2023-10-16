@@ -13,7 +13,7 @@ class Item extends Model
     /**
      * Get the seller associated with the item.
      */
-    public function seller(): HasOne
+    public function seller()
     {
         return $this->hasOne(User::class, 'id', 'seller_id');
     }
@@ -21,7 +21,7 @@ class Item extends Model
     /**
      * Get the buyer associated with the item.
      */
-    public function buyer(): HasOne
+    public function buyer()
     {
         return $this->hasOne(User::class, 'id', 'buyer_id');
     }
@@ -29,7 +29,7 @@ class Item extends Model
     /**
      * Get the category associated with the item.
      */
-    public function category(): HasOne
+    public function category()
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
     }    
