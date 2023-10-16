@@ -35,7 +35,7 @@ class HomeController extends Controller
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
 
-            'top_category_names' => $top_category_names
+            'top_category_names' => $top_category_names,
             //'categories' => $categories
         ]);
     }

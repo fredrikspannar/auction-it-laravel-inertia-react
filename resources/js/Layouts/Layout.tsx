@@ -12,8 +12,8 @@ export default function Layout({ auth, children }: PageProps) {
 
     return (
         <>
-            <div className="w-full bg-slate-500 flex flex-col">
-                <div className="header-top flex flex-col">
+            <div className="w-full header-bg flex flex-col">
+                <div className="header-top flex flex-col lg:w-3/4 lg:mx-auto">
                     <div className="flex justify-between h-2/3">
                         <div className="logo flex items-center w-1/4 ml-2 lg:ml-6"><img src="/images/auctionit.webp" alt="" /></div>
                         <div className="flex items-center justify-center w-3/4">
@@ -36,7 +36,7 @@ export default function Layout({ auth, children }: PageProps) {
                     </div>
                 </div>
             </div>
-            <div className="w-full p-4">
+            <div className="mainContent">
                 {children}
             </div>
         </>

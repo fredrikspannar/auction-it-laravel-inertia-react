@@ -6,11 +6,14 @@
 @layer utilities {
     .logo img { height: 72px; width: auto; }
     .header-top { 
+        height: 160px;
+        @apply text-white;
+    }
+
+    .header-bg {
         background: url('/images/header_bg_top.jpg');
         background-size: cover;
         background-position: center center;
-        height: 160px;
-        @apply text-white;
     }
 
     .header-top .navbar a {
@@ -43,5 +46,10 @@
 
     .textCardSmall .categoryTitle {
         font-size: 14px !important;
+    }
+
+    .mainContent {
+        @apply w-full lg:w-3/4 lg:mx-auto p-4;
+        height: calc(100vh - 160px) !important;
     }
 }
