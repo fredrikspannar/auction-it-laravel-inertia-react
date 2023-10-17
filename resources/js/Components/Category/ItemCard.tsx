@@ -1,6 +1,7 @@
 import { Item } from "@/types";
 import { ItemCardLastBid } from '@/Components/Category/ItemCardLastBid';
 import { Link } from '@inertiajs/react'
+import {Currency} from '@/Components/Shared/Currency';
 
 // create types for component, this is only used here
 export type ItemCardProps = {
@@ -23,10 +24,10 @@ export function ItemCard( {item}:ItemCardProps ) {
                 <div className="itemCardContent">
                     <p className="text-lg">{item.title}</p>
                     <div className="py-4 px-1 flex flex-row justify-between">
-                        <p><span className="text-slate-800">Price:</span> {item.price}</p>
+                        <p><span className="text-slate-800">Price:</span> <Currency price={item.price} /></p>
                         <p><span className="text-slate-800">Seller:</span> {item.seller?.username}</p>
                     </div>
-                    <p className="mb-8 px-1"><span className="text-slate-800">Ends:</span> {item.ends_at}</p>
+                    <p className="mb-8 px-1"><span className="text-slate-800">Ends:</span> {item.ends_at.toString()}</p>
 
                     {item.lastBid && <ItemCardLastBid lastBid={item.lastBid} /> }
                 </div>
