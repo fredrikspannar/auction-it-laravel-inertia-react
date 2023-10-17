@@ -58,7 +58,7 @@
     }
 
     .itemCard {
-        @apply h-[32rem] w-80 bg-slate-100;
+        @apply h-[32rem] w-80 bg-slate-100 hover:opacity-60;
     }
 
     .itemCardContent {

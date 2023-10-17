@@ -22,10 +22,11 @@ export function ItemCard( {item}:ItemCardProps ) {
                 <p><img onError={brokenImageFallback} src={`/storage/${item.images && item.images[0].image}`} alt={item.title} /></p>
                 <div className="itemCardContent">
                     <p className="text-lg">{item.title}</p>
-                    <div className="mb-8 py-4 px-1 flex flex-row justify-between">
+                    <div className="py-4 px-1 flex flex-row justify-between">
                         <p><span className="text-slate-800">Price:</span> {item.price}</p>
                         <p><span className="text-slate-800">Seller:</span> {item.seller?.username}</p>
                     </div>
+                    <p className="mb-8 px-1"><span className="text-slate-800">Ends:</span> {item.ends_at}</p>
 
                     {item.lastBid && <ItemCardLastBid lastBid={item.lastBid} /> }
                 </div>
