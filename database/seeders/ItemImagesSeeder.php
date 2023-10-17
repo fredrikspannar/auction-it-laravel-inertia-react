@@ -29,8 +29,10 @@ class ItemImagesSeeder extends Seeder
     private function getItemImage($item_id) {
         // setup path
         $item_path = storage_path("app/public/item/{$item_id}");
+        $imageFn = "placeholder.jpg";
 
 
+        // get image
         $response = $this->guzzleClient->request('GET', "https://loremflickr.com/640/480/products", 
                                         array(  'verify' => false )
                                     );
@@ -47,8 +49,22 @@ class ItemImagesSeeder extends Seeder
                 throw("getItemImage has invalid image extension {$ext}");
             }
 
+            // does an image already exist with the same name?
+            $imageFn = "item_{$item_id}.{$ext}";
+
+            if ( file_exists("{$item_path}/${imageFn}") ) {
+                // loop through to create a unique filename
+                $i = 0;
+                do {
+                    $i++;
+
+                    // create new filename with index appended
+                    $imageFn = "item_{$item_id}-${i}.{$ext}";
+                } while( file_exists("{$item_path}/${imageFn}") );
+            }
+
             // get results and save to file
-            file_put_contents("{$item_path}/item_{$item_id}.{$ext}", $response->getBody());
+            file_put_contents("{$item_path}/${imageFn}", $response->getBody());
 
         } else {
 
@@ -56,7 +72,7 @@ class ItemImagesSeeder extends Seeder
             throw( "FAILED to get item image from loremflickr, StatusCode: $response->getStatusCode()");
         }
 
-        return "item/{$item_id}/item_{$item_id}.{$ext}";
+        return "item/${item_id}/{$imageFn}";
     }
 
 
@@ -77,7 +93,11 @@ class ItemImagesSeeder extends Seeder
             // setup path for item
             if ( !file_exists($item_path."/{$item->id}") ) mkdir($item_path."/{$item->id}");
 
-            ItemImages::create([ 'item_id' => $item->id, 'image' => $this->getItemImage($item->id) ]);
+            $numImages = rand(1,5);
+
+            for($i=0; $i<$numImages; $i++) {
+                ItemImages::create([ 'item_id' => $item->id, 'image' => $this->getItemImage($item->id) ]);
+            }
 
         }
 
