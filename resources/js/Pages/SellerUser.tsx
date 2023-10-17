@@ -21,7 +21,7 @@ export default function SellerUser ({ auth, user }:PageProps< { user:Seller } >)
         target.src = "/images/empty_user.png";
     }
 
-console.log(user)
+
     return (
         <Layout auth={auth}>
             
