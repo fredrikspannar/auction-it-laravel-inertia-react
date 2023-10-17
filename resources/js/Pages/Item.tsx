@@ -32,7 +32,7 @@ export default function ItemPage ({ auth, item, parents }:PageProps<{item:Item, 
                         <div className="">
                             <img src={getCurrentImageSrc()} onError={brokenImageFallback} alt="" />
                         </div>
-                        <div className="mt-8 p-4 bg-slate-200">
+                        <div className={`${(item.images && item.images.length > 0) && "mt-8 p-4 bg-slate-200"}`}>
                             <div className="flex flex-row justify-center">
                                 {item.images?.map((img, index) => (
                                     <img src={`/storage/${img.image}`} className="ml-2 mr-2 w-16 hover:opacity-60 itemImageCarousel" onClick={() => setImageIndex(index) } alt="" title="Click to show image" />
