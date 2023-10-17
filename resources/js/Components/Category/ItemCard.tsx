@@ -22,7 +22,7 @@ export function ItemCard( {item, smallerItemCard=false, hideSeller=false}:ItemCa
     return (
         <Link href={route('item', item.id)} title={`Show item "${item.title}"`}>
             <div className={`itemCard mt-4 ${smallerItemCard && "!w-60 !h-26 mr-4"}`}>
-                <p><img onError={brokenImageFallback} src={`/storage/${item.images && item.images[0].image}`} alt={item.title} /></p>
+                <p><img onError={brokenImageFallback} src={`/storage/${(item.images && item.images[0]) ? item.images[0].image : "placeholder.jpg"}`} alt={item.title} /></p>
                 <div className="itemCardContent">
                     <p className="text-lg">{item.title}</p>
                     <div className="py-4 px-1 flex flex-row justify-between">
