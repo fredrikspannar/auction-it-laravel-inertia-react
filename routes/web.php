@@ -25,6 +25,7 @@ use App\Http\Controllers\ItemController;
 Route::get('/',  [HomeController::class, 'index']);
 Route::get('/categories/{id?}',  [CategoryController::class, 'index'])->name('categories');
 Route::get('/sellers',  [SellersController::class, 'index'])->name('sellers');
+Route::get('/sellers/user/{username}',  [SellersController::class, 'showUser'])->name('sellerUser');
 Route::get('/statistics',  [StatisticsController::class, 'index'])->name('statistics');
 Route::get('/item/{id?}',  [ItemController::class, 'index'])->name('item');
 

@@ -11,7 +11,9 @@ export interface User {
     name: string;
     email: string;
     username: string;
-    email_verified_at: string;
+    email_verified_at?: string;
+    selling_items_count?: number;
+    profile_image?:string;
 }
 
 export interface Category {
