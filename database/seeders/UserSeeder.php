@@ -110,10 +110,10 @@ class UserSeeder extends Seeder
     {
         
         // fetch female user data from randomuser.me and then send to processing
-        $this->processRandomUserData( $this->getRandomUserData("female", 10) );
+        $this->processRandomUserData( $this->getRandomUserData("female", 400) );
 
         // fetch male user data from randomuser.me and then send to processing
-        $this->processRandomUserData( $this->getRandomUserData("male", 10) );
+        $this->processRandomUserData( $this->getRandomUserData("male", 600) );
 
     }
 
