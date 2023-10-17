@@ -3,6 +3,7 @@ import { Category } from "@/types";
 import React from 'react';
 import CategoryCardMetaData from './CategoryCardMetaData';
 
+// create types for component, this is only used here
 interface CategoryCardProps {
     category:Category;
     isMainCategories:boolean;

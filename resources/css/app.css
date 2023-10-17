@@ -4,6 +4,10 @@
 
 
 @layer utilities {
+    .primaryButton {
+        @apply px-4 py-1 bg-yellow-500 text-black rounded-sm hover:bg-yellow-300;
+    }
+
     .logo img { height: 72px; width: auto; }
     .header-top { 
         height: 160px;
@@ -25,7 +29,7 @@
     }
 
     .header-top .navbar ul.user.not-logged-in a {
-        @apply px-4 py-1 bg-yellow-500 text-black rounded-sm hover:bg-yellow-300;
+        @apply primaryButton;
     }
 
     .categoryCard {
@@ -63,5 +67,9 @@
 
     .itemCardContent {
         @apply p-2;
+    }
+
+    .itemImageCarousel {
+        cursor: pointer;
     }
 }

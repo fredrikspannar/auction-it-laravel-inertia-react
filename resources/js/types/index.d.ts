@@ -53,4 +53,5 @@ export interface Item {
     seller?: User;
     images?:ItemImage[];
     category?:Category;
+    bids?:Bid[];
 }
