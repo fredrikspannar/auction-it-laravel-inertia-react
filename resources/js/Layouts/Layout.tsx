@@ -7,7 +7,7 @@ export default function Layout({ auth, children }: PageProps) {
 
     const { url } = usePage();
 
-    console.log('Layout auth = ',auth);
+    //console.log('Layout auth = ',auth);
 
 
     return (
