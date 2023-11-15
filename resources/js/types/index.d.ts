@@ -57,3 +57,28 @@ export interface Item {
     category?:Category;
     bids?:Bid[];
 }
+
+// chart types
+export type UsersBuyersSellersType = {
+    userCount:number;
+    sellerCount:number;
+    buyerCount:number;
+}
+
+export type ItemsBidsType = {
+    itemCount:number;
+    bidCount:number;
+}
+
+export type DataChartType = {
+    data:number[];
+    backgroundColor?:string[];
+}
+
+export type ChartType = {
+    labels: string[];
+    datasets: DataChartType[];
+}
+
+
+
