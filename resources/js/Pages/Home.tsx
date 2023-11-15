@@ -53,7 +53,10 @@ export default function Home ({ auth, top_category_names, categories }:PageProps
                     <img src="/images/box-cat.webp" alt="" />
                 </div>
             </div>
-
+            
+            <div className="text-xl p-4 lg:p-8 mt-12 flex flex-row lg:w-3/4 lg:mx-auto">
+                Categories, images, items, bids are generated (programatically) with seeds. Images are from <a href="https://loremflickr.com" target="_blank" className="ml-2 hover:underline">loremflickr.com</a>
+            </div>
 
         </Layout>
     )
