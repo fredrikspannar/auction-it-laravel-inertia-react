@@ -28,7 +28,7 @@ export default function CategoryCard( { category, isMainCategories, isSiteHome =
         return (
             <Link href={route('categories', [category.id])} title={`View Category "${category.name}"`}>
                 <div className={cardClasses} key={`category-${category.id}`}>
-                    <img onError={brokenImageFallback} src={`storage/${category.image}`} alt={`Category ${category.name}`} />
+                    <img onError={brokenImageFallback} src={`/storage/${category.image}`} alt={`Category ${category.name}`} />
                     <p className="categoryTitle">{category.name}</p>
                     
                     {isSiteHome && <CategoryCardMetaData category={category} />}           
@@ -42,7 +42,7 @@ export default function CategoryCard( { category, isMainCategories, isSiteHome =
         return (
             
             <div className={cardClasses} key={`category-${category.id}`}>
-                <img onError={brokenImageFallback} src={`storage/${category.image}`} alt={`Category ${category.name}`} />
+                <img onError={brokenImageFallback} src={`/storage/${category.image}`} alt={`Category ${category.name}`} />
                 <p className="categoryTitle">{category.name}</p>
 
                 {isSiteHome && <CategoryCardMetaData category={category} />}          
