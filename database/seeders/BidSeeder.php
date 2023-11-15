@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 use \App\Models\User;
 use \App\Models\Item;
@@ -13,8 +14,11 @@ class BidSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * 
+     * OPTIONAL: When running the command create:bids - this command can take in a parameter with an date,
+     * this is then passed to this seeder as $fromDate
      */
-    public function run(): void
+    public function run($fromDate=false): void
     {
         // get all items in auction which does not have a buyer
         $itemCount = Item::count();
@@ -25,15 +29,18 @@ class BidSeeder extends Seeder
             return (int)$items->seller_id;
         })->toArray() );
 
+
         // create bids for buyers
         foreach($items as $item) {
+
+            if ( empty($item) || !isset($item->id) ) continue;
 
             // get buyers ( which is not a seller )
             $buyers = User::select('id')->whereNotIn('id',$sellers)->limit( rand(1,8) )->inRandomOrder()->get();
 
             // set starting bid - either half the price or at the asking price
             $lastBid = rand(1,2) == 2 ? $item->price /2 : $item->price;
-            $lastBidDate = $item->created_at;
+            $lastBidDate = !empty($fromDate) ? $fromDate.' 01:01:01' : $item->created_at;
 
             // create a bid for each buyer
             foreach($buyers as $buyer) {
@@ -51,7 +58,7 @@ class BidSeeder extends Seeder
                     $nextHour = rand($startingHour, 48);
                     $newBidDate = date('Y-m-d H:i:s', strtotime("+{$nextHour} hours", strtotime($lastBidDate)));
                 }
-
+                
                 // save bid
                 Bid::create([ 'item_id' => $item->id, 'price' => $lastBid, 'bidder_id' => $buyer->id, 'created_at' => $newBidDate ]);
 

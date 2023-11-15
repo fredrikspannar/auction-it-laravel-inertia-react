@@ -13,6 +13,15 @@ class Bid extends Model
 
     public $timestamps = false; // disable all timestamps
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'item_id', 'price', 'bidder_id', 'created_at'
+    ];
+
     public static function boot()
     {
         parent::boot();
