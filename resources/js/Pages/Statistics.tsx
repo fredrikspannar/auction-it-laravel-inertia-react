@@ -1,15 +1,22 @@
 
 import Layout from "@/Layouts/Layout"
 import { PageProps } from '@/types';
-import { Pie } from "react-chartjs-2";
-import {Chart, ArcElement, Legend} from 'chart.js'
+import { Pie, Line } from "react-chartjs-2";
+import {Chart, ArcElement, Legend, CategoryScale, LineElement, LinearScale, PointElement } from 'chart.js'
 import { UsersBuyersSellersType, ItemsBidsType, ChartType } from "@/types";
 
 //setup chart.js which plugins to use
-Chart.register(ArcElement, Legend);
+Chart.register(ArcElement, LineElement, PointElement, CategoryScale, LinearScale, Legend);
 
+type StatisticsPagePropsType = {
+    usersBuyersSellers:UsersBuyersSellersType;
+    itemsBids:ItemsBidsType;
+    timelineTitle:string;
+    monthBids:any[];
+    monthsLabels:string[];
+}
 
-export default function Statistics ({ auth, usersBuyersSellers, itemsBids }:PageProps<{usersBuyersSellers:UsersBuyersSellersType, itemsBids:ItemsBidsType }>) {
+export default function Statistics ({ auth, usersBuyersSellers, itemsBids, timelineTitle, monthBids, monthsLabels }:PageProps<StatisticsPagePropsType>) {
 
     // create datasats with labels and colors
     const usersBuyersSellersChart:ChartType = {
@@ -39,11 +46,26 @@ export default function Statistics ({ auth, usersBuyersSellers, itemsBids }:Page
         ]
     }
 
+
+    let monthData:any = [];
+
+    Object.keys(monthBids).forEach(key=>{
+        // @ts-ignore
+        monthData.push(monthBids[key]);
+    })
+
+    const timeLineBidsChart:ChartType = {
+        labels: monthsLabels,
+        // @ts-ignore
+        datasets: [{data: monthData, fill:false, tension: 0.1}]
+    }
+
+
     // render page
     return (
         <Layout auth={auth}>
             
-                <div className="flex space-x-20  mt-12">
+                <div className="flex space-x-20 mt-12">
                     <div className="max-w-lg">
                         <h2 className="mb-4 text-xl font-bold">Number of users vs sellers vs buyers</h2>
                         <Pie data={usersBuyersSellersChart} className="!w-96 !h-96" />
@@ -53,6 +75,18 @@ export default function Statistics ({ auth, usersBuyersSellers, itemsBids }:Page
                         <h2 className="mb-4 text-xl font-bold">Number of auctions and bids</h2>
                         <Pie data={itemBidsChart} className="!w-96 !h-96" />
                     </div>
+                </div>
+
+                <div className="mt-12 mb-8">
+                    <h2 className="mb-8 text-xl font-bold">{timelineTitle}</h2>
+                    <Line data={timeLineBidsChart} className="!h-96"         options={{
+                        plugins: {
+                                legend: {
+                                display: false
+                            }
+                        }
+                        }}
+                    />
                 </div>
 
         </Layout>
