@@ -52,13 +52,20 @@ class BidSeeder extends Seeder
 
                 // create a new bid date
                 $newBidDate = $lastBidDate;
+
+                $loopFailSafeCount = 0;
                 $startingHour = 0;
-                while ($newBidDate == $lastBidDate || $newBidDate < $item->created_at) {
+                while ($newBidDate == $lastBidDate || ($newBidDate < $item->created_at && empty($fromDate))) {
                     $startingHour++;
                     $nextHour = rand($startingHour, 48);
                     $newBidDate = date('Y-m-d H:i:s', strtotime("+{$nextHour} hours", strtotime($lastBidDate)));
+
+                    // failsafe so we don't get stuck in an infinite loop
+                    $loopFailSafeCount++;
+                    if ( $loopFailSafeCount >= 1000 ) break;
                 }
                 
+
                 // save bid
                 Bid::create([ 'item_id' => $item->id, 'price' => $lastBid, 'bidder_id' => $buyer->id, 'created_at' => $newBidDate ]);
 
